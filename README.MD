@@ -21,24 +21,24 @@
 Player Animator - MonoBehaviour Class
 Name: PlayerAnimator.cs
 Description: Animations of the player handled by Player Animator.
-PlayerAnimator will get the Animator Controller of the Animator from Champion.cs ScriptableObject. (Champion.cs script explained more in detail below.)
-PlayerMovement calls PlayerAnimator to set animation to “Run” when moving and if not calls to set animation to “Idle”. 
-Player Attack calls PlayerAnimator to trigger animation to “Attack”.
+- PlayerAnimator will get the Animator Controller of the Animator from Champion.cs ScriptableObject. (Champion.cs script explained more in detail below.)
+- PlayerMovement calls PlayerAnimator to set animation to “Run” when moving and if not calls to set animation to “Idle”. 
+- Player Attack calls PlayerAnimator to trigger animation to “Attack”.
 
 Player Data - Normal Class
 Name: PlayerData.cs
 Description: Player Data stores data related to each player. PlayerData will not be a MonBehaviour class, instead it is a normal class binded to Player with a reference. (This is done for data optimization.)
-Player Movement Destination, Type: Vector2: the position the player wants to go that will be saved when the player right clicks to a position on terrain or when an enemy is not in the range of the player.
-Player Movement Time: the time the player right clicked for the movement destination last time or the time the player tried to attack an enemy at outside of the player’s range. Desired action time is saved as [dd.mm.yyyy hh:mm:ss:xxxx] (x represents milliseconds).
-Player Team: an enum of  [TeamBlue, TeamRed] that is the team of the player.
-Player Champion: Player’s selected champion, detailed in the Champion section.
-Player Total Health: Player’s total health in the game. 
-Formula: [Player Champion’s Total Health] + [Extra Total Health Given by Items] + [Extra Total Health Given by Runes]
-Player Health Regeneration Speed: Player’s health regeneration speed in each second of the game.
-Formula: [Player Champion’s Health Regeneration Speed] + [Extra Health Regeneration Speed Given by Items] + [Extra Health Regeneration Speed Given by Runes]
-Player Health Stole Multiplier: Multiplier value that is multiplied with given damage to calculate the additional health that will be added to the player. If player has health stole multiplier more then zero, each time player attacks and applies damage to the enemy player, the damage will be multiplied with the health stole multiplier and resulting value will be added to the player health.
-Formula: [Player Champion’s Health Stole Multiplier] + [Extra Health Stole Multiplier Given by Items] + [Extra Health Stole Multiplier Given by Runes]
-Player Health: Player’s current health in the game. If greater than total health, this value will be set to total health.
+- Player Movement Destination, Type: Vector2: the position the player wants to go that will be saved when the player right clicks to a position on terrain or when an enemy is not in the range of the player.
+- Player Movement Time: the time the player right clicked for the movement destination last time or the time the player tried to attack an enemy at outside of the player’s range. Desired action time is saved as [dd.mm.yyyy hh:mm:ss:xxxx] (x represents milliseconds).
+- Player Team: an enum of  [TeamBlue, TeamRed] that is the team of the player.
+- Player Champion: Player’s selected champion, detailed in the Champion section.
+- Player Total Health: Player’s total health in the game. 
+  - **Formula: [Player Champion’s Total Health] + [Extra Total Health Given by Items] + [Extra Total Health Given by Runes]**
+- Player Health Regeneration Speed: Player’s health regeneration speed in each second of the game.
+  - **Formula: [Player Champion’s Health Regeneration Speed] + [Extra Health Regeneration Speed Given by Items] + [Extra Health Regeneration Speed Given by Runes]**
+- Player Health Stole Multiplier: Multiplier value that is multiplied with given damage to calculate the additional health that will be added to the player. If player has health stole multiplier more then zero, each time player attacks and applies damage to the enemy player, the damage will be multiplied with the health stole multiplier and resulting value will be added to the player health.
+  - **Formula: [Player Champion’s Health Stole Multiplier] + [Extra Health Stole Multiplier Given by Items] + [Extra Health Stole Multiplier Given by Runes]**
+- Player Health: Player’s current health in the game. If greater than total health, this value will be set to total health.
 Player Total Mana: Player’s total mana in the game. 
 Formula: [Player Champion’s Total Mana] + [Extra Total Mana Given by Items] + [Extra Total Mana Given by Runes]
 Player Mana Regeneration Speed: Player’s mana regeneration speed in each second of the game.
