@@ -39,14 +39,14 @@
 - **Player Total Health:** Player’s total health in the game. 
   - **Formula: [Player Champion’s Total Health] + [Extra Total Health Given by Items] + [Extra Total Health Given by Runes]**
 - **Player Health Regeneration Speed:** Player’s health regeneration speed in each second of the game.
-  - **Formula: [Player Champion’s Health Regeneration Speed] + [Extra Health Regeneration Speed Given by Items] + [Extra Health Regeneration Speed Given by Runes]**
+  - **Formula: [Player Champion’s Health Regeneration Speed] + [Player Champion’s Health Regeneration Speed] * [(Extra Health Regeneration Speed Given by Items +Extra Health Regeneration Speed Given by Runes) / 100]**
 - **Player Health Stole Multiplier:** Multiplier value that is multiplied with given damage to calculate the additional health that will be added to the player. If player has health stole multiplier more then zero, each time player attacks and applies damage to the enemy player, the damage will be multiplied with the health stole multiplier and resulting value will be added to the player health.
   - **Formula: [Player Champion’s Health Stole Multiplier] + [Extra Health Stole Multiplier Given by Items] + [Extra Health Stole Multiplier Given by Runes]**
 - **Player Health:** Player’s current health in the game. If greater than total health, this value will be set to total health.
 - **Player Total Mana:** Player’s total mana in the game. 
   - **Formula: [Player Champion’s Total Mana] + [Extra Total Mana Given by Items] + [Extra Total Mana Given by Runes]**
 - **Player Mana Regeneration Speed:** Player’s mana regeneration speed in each second of the game.
-  - **Formula: [Player Champion’s Mana Regeneration Speed] + [Extra Mana Regeneration Speed Given by Items] + [Extra Mana Regeneration Speed Given by Runes]**
+  - **Formula: [Player Champion’s Mana Regeneration Speed] + [Player Champion’s Mana Regeneration Speed] * [(Extra Mana Regeneration Speed Given by Items + Extra Mana Regeneration Speed Given by Runes) / 100]**
 - **Player Mana:** Player’s current mana in the game. If greater than total mana, this value will be set to total mana.
 - **Player Attack Cooldown Time:** Player’s attack cooldown time which makes the player wait for the value of time to make another normal attack.
   - **Formula: [Player Champion’s Attack Cooldown Time] - [Player Champion’s Attack Cooldown Time] * [(Extra Attack Speed Given by Items + Extra Attack Speed Given by Runes) / 100]**
