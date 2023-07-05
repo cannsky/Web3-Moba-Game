@@ -1,5 +1,11 @@
 ## Web3 Moba Game
 
+**This project is an experimental project to see the limits of blockchain gaming.** As a team of three people, we try to bring an example moba game to the web3 space with transferring the functionalty from web2 to web3 as much as possible. The idea of a full-chain game is commonly used in web3 space, but without some smart shortcuts, it is not a possibility in blockchain world.
+
+This project is an open-source project in code base and easy to implement to any type of moba game.
+
+Here is the full project explanation in both game, blockchain and server side.
+
 ### Player Input - MonoBehaviour Class
 
 **Name: PlayerInput.cs**
