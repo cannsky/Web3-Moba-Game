@@ -81,6 +81,10 @@
       - **If the selected player is not inside of the range,** the player will move towards the enemy player using PlayerMovement. Until there is another input given, variable continuouslyCheckRange will be set to true for checking whether the target is inside of the range or not in each frame. When the target is inside the range, the player will stop moving and attack the other player.
     - **If there is an attack cooldown,** do nothing.
 - After each attack there will be a cooldown (wait time) for the other attack.
+- **If player attacked**
+  - **Player Animator** will run the attack animation.
+  - **Player VFX** will instantiate a prefab of the attack vfx.
+  - **Player Audio** will play the audio of the attack sound. 
 
 ### Player Defense- Monobehaviour Class
 
@@ -194,4 +198,12 @@ Variables Important: **target**.
 - Each attack's applied damage will be calculated as follows:
   - **Formula: [Player Attack Damage - Damaged Armor]**
   - **Damaged Armor: [Armor - Armor Piercing], if value is negative make it 0.**
+
+### Player VFX - Monobehaviour Class
+
+**Name: PlayerVFX.cs**
+
+**Description:** Player Effect is responsible for displaying the vfx effects as a result of player actions.
+- Attacks and skills of champions have a vfx component added to them. This vfx component is being instantiated in PlayerVFX.
+- Virtual effect’s display position is the same position as the Player Skill’s calculated position. That’s why, Player Skill calls Player VFX with a position given.
 
