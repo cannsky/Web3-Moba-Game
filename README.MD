@@ -119,9 +119,11 @@
 - Movement Speed: (Type: Float): Movement speed in seconds.
 - Skills (Type: Skill): [Variable names: qSkill, wSkill, eSkill, rSkill] The skills that a player can perform during battle. Skills are q,w,e and r skills. If a player performs any of these keys, the appropriate skill will be applied.
 
-Item - Scriptable Class
-Name: Item.cs
-Description: This class represents items present in the game. Each item has different changes in the character attributes. Features:
+### Item - Scriptable Class
+
+**Name: Item.cs**
+
+**Description:** This class represents items present in the game. Each item has different changes in the character attributes. Features:
 - Item Type: (Type: Enum[AD, AP])
 - Extra Total Health: (Type: Float)
 - Extra Health Regeneration Speed: (Type: Float)
@@ -134,54 +136,62 @@ Description: This class represents items present in the game. Each item has diff
 - Extra Armor Piercing: (Type: Float
 - Extra Movement Speed: (Type: Float)
 
-Rune - Scriptable Class
-Name: Rune.cs
-Description: This class represents runes present in the game. Runes have different effects. Features:
+### Rune - Scriptable Class
+
+**Name: Rune.cs**
+
+**Description:** This class represents runes present in the game. Runes have different effects. Features:
 Rune Type: (Type: Enum[AD, AP])
-Extra Total Health: (Type: Float)
-Extra Health Regeneration Speed: (Type: Float)
-Extra Health Stole Multiplier: (Type: Float)
-Extra Total Mana: (Type: Float)
-Extra Mana Regeneration Speed: (Type: Float)
-Extra Attack Speed: (Type: Float)
-Extra Attack Damage: (Type: Float)
-Extra Armor: (Type: Float)
-Extra Armor Piercing: (Type: Float)
-Extra Movement Speed: (Type: Float)
+- Extra Total Health: (Type: Float)
+- Extra Health Regeneration Speed: (Type: Float)
+- Extra Health Stole Multiplier: (Type: Float)
+- Extra Total Mana: (Type: Float)
+- Extra Mana Regeneration Speed: (Type: Float)
+- Extra Attack Speed: (Type: Float)
+- Extra Attack Damage: (Type: Float)
+- Extra Armor: (Type: Float)
+- Extra Armor Piercing: (Type: Float)
+- Extra Movement Speed: (Type: Float)
 
-Attack - Scriptable Class
-Name: Attack.cs
-Description: This class represents skills that the players can use, each champion will have a skill set on them.
-Attack Animation: (Type: Animation)
-Attack VFX: (Type: Gameobject)
-Attack Sound: (Type: AudioClip)
+### Attack - Scriptable Class
 
-Skill - Scriptable Class
-Name: Skill.cs
-Description: This class represents skills that the players can use, each champion will have a skill set on them.
-Skill Type: (Type: Enum[AD, AP])
-Animation: (Type: Animation)
-VFX: (Type: Gameobject)
-Sound: (Type: AudioClip)
-Radius: (Type: Float)
-Range: (Type: Float)
-Attack Damage: (Type: Float)
-Armor: (Type: Float)
-Start Time: (Type: Float)
-End Time: (Type: Float)
+**Name: Attack.cs**
 
-Player Skill - Monobehaviour Class
-Name: PlayerSkill.cs
-Description: Player Skill is responsible for the skills of the player. Checks several requirements and if they are met player attacks to the enemy team’s any player.
-Variables Important: target.
-If the player uses keys [q, w, e or r], the player will perform a skill in the direction of the right click button. Skill set for each champion is given as qSkill, wSkill, eSkill, rSkill in the Champion which is referenced through Player Data.
-If there is no cooldown on skill, the player performs the skill.
-If there is enough mana, the player performs the skill.
-If there is an enemy inside of the skill area , the enemy inside of the area will take damage using Player Skill’s apply damage instead of Player Attack’s apply damage.
-if there is not enough mana, do nothing.
-if there is a skill cooldown, do nothing.
-After each skill there will be a cooldown (wait time) for the other attack.
-Each attack's applied damage will be calculated as follows:
-Formula: [Player Attack Damage - Damaged Armor]
-Damaged Armor: [Armor - Armor Piercing], if value is negative make it 0.
+**Description:** This class represents skills that the players can use, each champion will have a skill set on them.
+- Attack Animation: (Type: Animation)
+- Attack VFX: (Type: Gameobject)
+- Attack Sound: (Type: AudioClip)
+
+### Skill - Scriptable Class
+
+**Name: Skill.cs**
+
+**Description:** This class represents skills that the players can use, each champion will have a skill set on them.
+- **Skill Type: (Type: Enum[AD, AP])**
+- **Animation: (Type: Animation)**
+- **VFX: (Type: Gameobject)**
+- **Sound: (Type: AudioClip)**
+- **Radius: (Type: Float)**
+- **Range: (Type: Float)**
+- **Attack Damage: (Type: Float)**
+- **Armor: (Type: Float)**
+- **Start Time: (Type: Float)**
+- **End Time: (Type: Float)**
+
+### Player Skill - Monobehaviour Class
+
+**Name: PlayerSkill.cs**
+
+**Description:** Player Skill is responsible for the skills of the player. Checks several requirements and if they are met player attacks to the enemy team’s any player.
+Variables Important: **target**.
+- If the player uses keys **[q, w, e or r],** the player will perform a skill in the direction of the right click button. Skill set for each champion is given as qSkill, wSkill, eSkill, rSkill in the Champion which is referenced through Player Data.
+- **If there is no cooldown on skill,** the player performs the skill.
+  - **If there is enough mana,** the player performs the skill.
+    - **If there is an enemy inside of the skill area,** the enemy inside of the area will take damage using Player Skill’s apply damage instead of Player Attack’s apply damage.
+  - **If there is not enough mana,** do nothing.
+- **If there is a skill cooldown,** do nothing.
+- After each skill there will be a cooldown (wait time) for the other attack.
+- Each attack's applied damage will be calculated as follows:
+  - **Formula: [Player Attack Damage - Damaged Armor]**
+  - **Damaged Armor: [Armor - Armor Piercing], if value is negative make it 0.**
 
