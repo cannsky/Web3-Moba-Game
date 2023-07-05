@@ -3,14 +3,16 @@
 **Name: PlayerInput.cs**
 
 **Description:** All inputs will be handled inside PlayerInput.
-When the player [left click, right click, q, w, e, r] in Update, the bool variable of appropriate variable is going to be set to true. (q, w, e and r are used for skills)
-At the LateUpdate, all of the bool variables will be set to false. 
-All classes that take input from PlayerInput will take bool variables in Update so that the inputs will be renewed at each frame and there won’t be any confusion.
+- When the player **[left click, right click, q, w, e, r]** in Update, the bool variable of appropriate variable is going to be set to true. (q, w, e and r are used for skills)
+- At the LateUpdate, all of the bool variables will be set to false. 
+- All classes that take input from PlayerInput will take bool variables in Update so that the inputs will be renewed at each frame and there won’t be any confusion.
 
-Player Movement - MonoBehaviour Class
-Name: PlayerMovement.cs
-Description: Player movement is responsible for changing the position of the player.
-When the player right clicks to a point, the player is being moved to that point using Unity Navmesh AI. 
+### Player Movement - MonoBehaviour Class
+
+**Name: PlayerMovement.cs**
+
+**Description:** Player movement is responsible for changing the position of the player.
+When the player right clicks to a point, the player is being moved to that point using **Unity Navmesh AI.** 
 Player sends a raycast with the right click input and gets the position of that point in x, z formation as Vector2. (y is not needed for now.)
 The player movement system makes sure that the raycast’s hit object’s layer is the “Terrain” layer. If the player's layer is different from the “Terrain” layer the player is not going to be moved.
 If the player right clicks to an enemy and the range of the player is not enough, the player will move towards the enemy. Explained in more detail in PlayerAttack.
