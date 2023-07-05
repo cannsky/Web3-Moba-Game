@@ -100,67 +100,67 @@
 **Name: Champion.cs**
 
 **Description:** This class represents the champions available in the game. Each champion will have different features from each other. Features: 
-- Type (Type: Enum[Melee, Ranged]): There are two types of player characters: Ranged or Melee. Melee characters’ range can be less than or equal to 1f and ranged characters can be higher than that. (1 float = 1 meters)
-- Damage Type (Type: Enum[AD, AP]): Characters normal attack damage type that is used inside of the game in calculations.
-- Range (Type: Float): The distance that a player can attack to another player.
-- Character Prefab (Type: Gameobject): Prefab that will be instantiated at the start of the battle scene.
-- Attack Cooldown Time: (Type: Float)
-- AD Attack Damage: (Type: Float)
-- AP Attack Damage: (Type: Float)
-- Total Health: (Type: Float)
-- Health Regeneration Speed: (Type: Float): Health regeneration speed in seconds.
-- Health Stole Multiplier: (Type: Float)
-- Total Mana: (Type: Float)
-- Mana Regeneration Speed: (Type: Float): Mana regeneration speed in seconds.
-- AD Armor: (Type: Float): If incoming attack is an AD damage, AD armor will be used to reduce the incoming damage.
-- AP Armor: (Type: Float): If incoming attack is an AP damage, AP armor will be used to reduce the incoming damage.
-- Armor Piercing AD: (Type: Float): If player type is AD this will be used otherwise this value set to 0.
-- Armor Piercing AP: (Type: Float): If player type is AP this will be used otherwise this value set to 0.
-- Movement Speed: (Type: Float): Movement speed in seconds.
-- Skills (Type: Skill): [Variable names: qSkill, wSkill, eSkill, rSkill] The skills that a player can perform during battle. Skills are q,w,e and r skills. If a player performs any of these keys, the appropriate skill will be applied.
+- **Type (Type: Enum[Melee, Ranged]):** There are two types of player characters: Ranged or Melee. Melee characters’ range can be less than or equal to 1f and ranged characters can be higher than that. (1 float = 1 meters)
+- **Damage Type (Type: Enum[AD, AP]):** Characters normal attack damage type that is used inside of the game in calculations.
+- **Range (Type: Float):** The distance that a player can attack to another player.
+- **Character Prefab (Type: Gameobject):** Prefab that will be instantiated at the start of the battle scene.
+- **Attack Cooldown Time: (Type: Float)**
+- **AD Attack Damage: (Type: Float)**
+- **AP Attack Damage: (Type: Float)**
+- **Total Health: (Type: Float)**
+- **Health Regeneration Speed: (Type: Float):** Health regeneration speed in seconds.
+- **Health Stole Multiplier: (Type: Float)**
+- **Total Mana: (Type: Float)**
+- **Mana Regeneration Speed: (Type: Float):** Mana regeneration speed in seconds.
+- **AD Armor: (Type: Float):** If incoming attack is an AD damage, AD armor will be used to reduce the incoming damage.
+- **AP Armor: (Type: Float):** If incoming attack is an AP damage, AP armor will be used to reduce the incoming damage.
+- **Armor Piercing AD: (Type: Float):** If player type is AD this will be used otherwise this value set to 0.
+- **Armor Piercing AP: (Type: Float):** If player type is AP this will be used otherwise this value set to 0.
+- **Movement Speed: (Type: Float):** Movement speed in seconds.
+- **Skills (Type: Skill):** [Variable names: qSkill, wSkill, eSkill, rSkill] The skills that a player can perform during battle. Skills are q,w,e and r skills. If a player performs any of these keys, the appropriate skill will be applied.
 
 ### Item - Scriptable Class
 
 **Name: Item.cs**
 
 **Description:** This class represents items present in the game. Each item has different changes in the character attributes. Features:
-- Item Type: (Type: Enum[AD, AP])
-- Extra Total Health: (Type: Float)
-- Extra Health Regeneration Speed: (Type: Float)
-- Extra Health Stole Multiplier: (Type: Float)
-- Extra Total Mana: (Type: Float)
-- Extra Mana Regeneration Speed: (Type: Float)
-- Extra Attack Speed: (Type: Float)
-- Extra Attack Damage: (Type: Float)
-- Extra Armor: (Type: Float)
-- Extra Armor Piercing: (Type: Float
-- Extra Movement Speed: (Type: Float)
+- **Item Type: (Type: Enum[AD, AP])**
+- **Extra Total Health: (Type: Float)**
+- **Extra Health Regeneration Speed: (Type: Float)**
+- **Extra Health Stole Multiplier: (Type: Float)**
+- **Extra Total Mana: (Type: Float)**
+- **Extra Mana Regeneration Speed: (Type: Float)**
+- **Extra Attack Speed: (Type: Float)**
+- **Extra Attack Damage: (Type: Float)**
+- **Extra Armor: (Type: Float)**
+- **Extra Armor Piercing: (Type: Float**
+- **Extra Movement Speed: (Type: Float)**
 
 ### Rune - Scriptable Class
 
 **Name: Rune.cs**
 
 **Description:** This class represents runes present in the game. Runes have different effects. Features:
-Rune Type: (Type: Enum[AD, AP])
-- Extra Total Health: (Type: Float)
-- Extra Health Regeneration Speed: (Type: Float)
-- Extra Health Stole Multiplier: (Type: Float)
-- Extra Total Mana: (Type: Float)
-- Extra Mana Regeneration Speed: (Type: Float)
-- Extra Attack Speed: (Type: Float)
-- Extra Attack Damage: (Type: Float)
-- Extra Armor: (Type: Float)
-- Extra Armor Piercing: (Type: Float)
-- Extra Movement Speed: (Type: Float)
+- **Rune Type: (Type: Enum[AD, AP])**
+- **Extra Total Health: (Type: Float)**
+- **Extra Health Regeneration Speed: (Type: Float)**
+- **Extra Health Stole Multiplier: (Type: Float)**
+- **Extra Total Mana: (Type: Float)**
+- **Extra Mana Regeneration Speed: (Type: Float)**
+- **Extra Attack Speed: (Type: Float)**
+- **Extra Attack Damage: (Type: Float)**
+- **Extra Armor: (Type: Float)**
+- **Extra Armor Piercing: (Type: Float)**
+- **Extra Movement Speed: (Type: Float)**
 
 ### Attack - Scriptable Class
 
 **Name: Attack.cs**
 
 **Description:** This class represents skills that the players can use, each champion will have a skill set on them.
-- Attack Animation: (Type: Animation)
-- Attack VFX: (Type: Gameobject)
-- Attack Sound: (Type: AudioClip)
+- **Attack Animation: (Type: Animation)**
+- **Attack VFX: (Type: Gameobject)**
+- **Attack Sound: (Type: AudioClip)**
 
 ### Skill - Scriptable Class
 
