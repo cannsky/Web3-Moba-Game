@@ -1,8 +1,6 @@
-**Player Input - MonoBehaviour Class
-
-Name: PlayerInput.cs**
-
-Description: All inputs will be handled inside PlayerInput.
+**Player Input - MonoBehaviour Class**
+**Name: PlayerInput.cs**
+**Description:** All inputs will be handled inside PlayerInput.
 When the player [left click, right click, q, w, e, r] in Update, the bool variable of appropriate variable is going to be set to true. (q, w, e and r are used for skills)
 At the LateUpdate, all of the bool variables will be set to false. 
 All classes that take input from PlayerInput will take bool variables in Update so that the inputs will be renewed at each frame and there won’t be any confusion.
