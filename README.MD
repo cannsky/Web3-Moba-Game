@@ -12,11 +12,11 @@
 **Name: PlayerMovement.cs**
 
 **Description:** Player movement is responsible for changing the position of the player.
-When the player right clicks to a point, the player is being moved to that point using **Unity Navmesh AI.** 
-Player sends a raycast with the right click input and gets the position of that point in x, z formation as Vector2. (y is not needed for now.)
-The player movement system makes sure that the raycast’s hit object’s layer is the “Terrain” layer. If the player's layer is different from the “Terrain” layer the player is not going to be moved.
-If the player right clicks to an enemy and the range of the player is not enough, the player will move towards the enemy. Explained in more detail in PlayerAttack.
-PlayerMovement also updates player data’s “Player Movement Destination” and “Player Movement Time” attributes when player right clicks to somewhere.
+- When the player right clicks to a point, the player is being moved to that point using **Unity Navmesh AI.** 
+- Player sends a raycast with the right click input and gets the position of that point in x, z formation as Vector2. (y is not needed for now.)
+- The player movement system makes sure that the raycast’s hit object’s layer is the “Terrain” layer. If the player's layer is different from the “Terrain” layer the player is not going to be moved.
+- If the player right clicks to an enemy and the range of the player is not enough, the player will move towards the enemy. Explained in more detail in PlayerAttack.
+- PlayerMovement also updates player data’s “Player Movement Destination” and “Player Movement Time” attributes when player right clicks to somewhere.
 
 Player Animator - MonoBehaviour Class
 Name: PlayerAnimator.cs
