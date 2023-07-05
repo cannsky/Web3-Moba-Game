@@ -1,3 +1,7 @@
+## Web3 Moba Game
+
+**This project is an experimental project to see the limits of blockchain gaming.**
+
 ### Player Input - MonoBehaviour Class
 
 **Name: PlayerInput.cs**
