@@ -33,8 +33,8 @@
 
 **Description:** Player Data stores data related to each player. PlayerData will not be a MonBehaviour class, instead it is a normal class binded to Player with a reference. (This is done for data optimization.)
 - **Player Movement Destination (Type: Vector2):** the position the player wants to go that will be saved when the player right clicks to a position on terrain or when an enemy is not in the range of the player.
-- **Player Movement Time:** the time the player right clicked for the movement destination last time or the time the player tried to attack an enemy at outside of the player’s range. Desired action time is saved as [dd.mm.yyyy hh:mm:ss:xxxx] (x represents milliseconds).
-- **Player Team:** an enum of  [TeamBlue, TeamRed] that is the team of the player.
+- **Player Movement Time:** the time the player right clicked for the movement destination last time or the time the player tried to attack an enemy at outside of the player’s range. Desired action time is saved as **[dd.mm.yyyy hh:mm:ss:xxxx] (x represents milliseconds)**.
+- **Player Team:** an enum of  **[TeamBlue, TeamRed]** that is the team of the player.
 - **Player Champion:** Player’s selected champion, detailed in the Champion section.
 - **Player Total Health:** Player’s total health in the game. 
   - **Formula: [Player Champion’s Total Health] + [Extra Total Health Given by Items] + [Extra Total Health Given by Runes]**
@@ -65,18 +65,22 @@
 - **Player Movement Speed:** Player’s movement speed applied while moving.
   - **Formula: [Player Champion’s Movement Speed] + [Player Champion’s Movement Speed] * [(Extra Movement Speed Given by Items + Extra Movement Speed Given by Runes) / 100]**
 
-Player Attack - Monobehaviour Class
-Name: PlayerAttack.cs
-Description: Player Attack is responsible for the normal attacks of the player. Checks several requirements and if they are met player attacks to the enemy team’s any player.
-Variables Important: target, continuouslyCheckRange.
-If the player right clicks to another gameobject and the raycast's hit object’s layer is “Player”, PlayerAttack will check some conditions.
-If the selected player is a teammate, the player moves to the position of the ally.
-If the selected player is not a teammate, the target variable is set to the enemy player and the player checks the range between two players.
-if there is no attack cooldown
-if the selected player is inside of the range, an attack will be performed.
-If the selected player is not inside of the range, the player will move towards the enemy player using PlayerMovement. Until there is another input given, variable continuouslyCheckRange will be set to true for checking whether the target is inside of the range or not in each frame. When the target is inside the range, the player will stop moving and attack the other player.
-if there is an attack cooldown, do nothing.
-After each attack there will be a cooldown (wait time) for the other attack.
+### Player Attack - Monobehaviour Class
+
+**Name: PlayerAttack.cs**
+
+**Description:** Player Attack is responsible for the normal attacks of the player. Checks several requirements and if they are met player attacks to the enemy team’s any player.
+
+**Variables Important: target, continuouslyCheckRange.**
+
+- If the player right clicks to another gameobject and the raycast's hit object’s layer is “Player”, PlayerAttack will check some conditions.
+  - **If the selected player is a teammate,** the player moves to the position of the ally.
+  - **If the selected player is not a teammate,** the target variable is set to the enemy player and the player checks the range between two players.
+    - **If there is no attack cooldown,**
+      - **If the selected player is inside of the range,** an attack will be performed.
+      - **If the selected player is not inside of the range,** the player will move towards the enemy player using PlayerMovement. Until there is another input given, variable continuouslyCheckRange will be set to true for checking whether the target is inside of the range or not in each frame. When the target is inside the range, the player will stop moving and attack the other player.
+    - **If there is an attack cooldown,** do nothing.
+- After each attack there will be a cooldown (wait time) for the other attack.
 
 Player Defense- Monobehaviour Class
 Name: PlayerDefense.cs
