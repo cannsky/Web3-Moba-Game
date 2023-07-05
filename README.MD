@@ -73,7 +73,7 @@
 
 **Variables Important: target, continuouslyCheckRange.**
 
-- If the player right clicks to another gameobject and the raycast's hit object’s layer is “Player”, PlayerAttack will check some conditions.
+- If the player right clicks to another gameobject and the raycast's hit object’s layer is **“Player”**, Player Attack will check some conditions.
   - **If the selected player is a teammate,** the player moves to the position of the ally.
   - **If the selected player is not a teammate,** the target variable is set to the enemy player and the player checks the range between two players.
     - **If there is no attack cooldown,**
@@ -82,16 +82,18 @@
     - **If there is an attack cooldown,** do nothing.
 - After each attack there will be a cooldown (wait time) for the other attack.
 
-Player Defense- Monobehaviour Class
-Name: PlayerDefense.cs
-Description: Player Defense will take input from the attacker player’s attack damage and calculate the damage which will be applied to the target player. (Player Defense will be the target player’s player defense class.)
-Each attack's applied damage will be calculated as follows:
-If the attacker sent an AD attack,
-Formula: [Attacker Player AD Attack Damage - Player Defense AD Damaged Armor]
-Player Defense AD Damaged Armor: [Target Player AD Armor - Attacker Player AD Armor Piercing], if value is negative make it 0.
-If the attacker sent an AP attack.
-Formula: [Attacker Player AP Attack Damage - Player Defense AP Damaged Armor]
-Player Defense AD Damaged Armor: [Target Player AP Armor - Attacker Player AP Armor Piercing], if value is negative make it 0.
+### Player Defense- Monobehaviour Class
+
+**Name: PlayerDefense.cs**
+
+**Description:** Player Defense will take input from the attacker player’s attack damage and calculate the damage which will be applied to the target player. (Player Defense will be the target player’s player defense class.)
+- Each attack's applied damage will be calculated as follows:
+  - If the attacking player sent an AD attack,
+    - **Formula: [Attacking Player AD Attack Damage - Player Defense AD Damaged Armor]**
+    - **Player Defense AD Damaged Armor: [Target Player AD Armor - Attacking Player AD Armor Piercing], if value is negative make it 0.**
+  - If the attacking player sent an AP attack.
+    - **Formula: [Attacking Player AP Attack Damage - Player Defense AP Damaged Armor]**
+    - **Player Defense AD Damaged Armor: [Target Player AP Armor - Attacking Player AP Armor Piercing], if value is negative make it 0.**
 
 
 
