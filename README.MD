@@ -1,4 +1,4 @@
-**Player Input - MonoBehaviour Class**
+### Player Input - MonoBehaviour Class
 
 **Name: PlayerInput.cs**
 
