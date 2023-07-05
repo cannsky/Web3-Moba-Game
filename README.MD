@@ -24,8 +24,8 @@
 
 **Description:** Animations of the player handled by Player Animator.
 - PlayerAnimator will get the Animator Controller of the Animator from Champion.cs ScriptableObject. (Champion.cs script explained more in detail below.)
-- PlayerMovement calls PlayerAnimator to set animation to “Run” when moving and if not calls to set animation to “Idle”. 
-- Player Attack calls PlayerAnimator to trigger animation to “Attack”.
+- PlayerMovement calls PlayerAnimator to set animation to **“Run”** when moving and if not calls to set animation to **“Idle”**. 
+- Player Attack calls PlayerAnimator to trigger animation to **“Attack”**.
 
 Player Data - Normal Class
 Name: PlayerData.cs
