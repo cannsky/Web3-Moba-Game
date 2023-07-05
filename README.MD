@@ -27,9 +27,11 @@
 - PlayerMovement calls PlayerAnimator to set animation to **“Run”** when moving and if not calls to set animation to **“Idle”**. 
 - Player Attack calls PlayerAnimator to trigger animation to **“Attack”**.
 
-Player Data - Normal Class
-Name: PlayerData.cs
-Description: Player Data stores data related to each player. PlayerData will not be a MonBehaviour class, instead it is a normal class binded to Player with a reference. (This is done for data optimization.)
+### Player Data - Normal Class
+
+**Name: PlayerData.cs**
+
+**Description:** Player Data stores data related to each player. PlayerData will not be a MonBehaviour class, instead it is a normal class binded to Player with a reference. (This is done for data optimization.)
 - Player Movement Destination, Type: Vector2: the position the player wants to go that will be saved when the player right clicks to a position on terrain or when an enemy is not in the range of the player.
 - Player Movement Time: the time the player right clicked for the movement destination last time or the time the player tried to attack an enemy at outside of the player’s range. Desired action time is saved as [dd.mm.yyyy hh:mm:ss:xxxx] (x represents milliseconds).
 - Player Team: an enum of  [TeamBlue, TeamRed] that is the team of the player.
