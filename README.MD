@@ -32,38 +32,38 @@
 **Name: PlayerData.cs**
 
 **Description:** Player Data stores data related to each player. PlayerData will not be a MonBehaviour class, instead it is a normal class binded to Player with a reference. (This is done for data optimization.)
-- Player Movement Destination, Type: Vector2: the position the player wants to go that will be saved when the player right clicks to a position on terrain or when an enemy is not in the range of the player.
-- Player Movement Time: the time the player right clicked for the movement destination last time or the time the player tried to attack an enemy at outside of the player’s range. Desired action time is saved as [dd.mm.yyyy hh:mm:ss:xxxx] (x represents milliseconds).
-- Player Team: an enum of  [TeamBlue, TeamRed] that is the team of the player.
-- Player Champion: Player’s selected champion, detailed in the Champion section.
-- Player Total Health: Player’s total health in the game. 
+- **Player Movement Destination (Type: Vector2):** the position the player wants to go that will be saved when the player right clicks to a position on terrain or when an enemy is not in the range of the player.
+- **Player Movement Time:** the time the player right clicked for the movement destination last time or the time the player tried to attack an enemy at outside of the player’s range. Desired action time is saved as [dd.mm.yyyy hh:mm:ss:xxxx] (x represents milliseconds).
+- **Player Team:** an enum of  [TeamBlue, TeamRed] that is the team of the player.
+- **Player Champion:** Player’s selected champion, detailed in the Champion section.
+- **Player Total Health:** Player’s total health in the game. 
   - **Formula: [Player Champion’s Total Health] + [Extra Total Health Given by Items] + [Extra Total Health Given by Runes]**
-- Player Health Regeneration Speed: Player’s health regeneration speed in each second of the game.
+- **Player Health Regeneration Speed:** Player’s health regeneration speed in each second of the game.
   - **Formula: [Player Champion’s Health Regeneration Speed] + [Extra Health Regeneration Speed Given by Items] + [Extra Health Regeneration Speed Given by Runes]**
-- Player Health Stole Multiplier: Multiplier value that is multiplied with given damage to calculate the additional health that will be added to the player. If player has health stole multiplier more then zero, each time player attacks and applies damage to the enemy player, the damage will be multiplied with the health stole multiplier and resulting value will be added to the player health.
+- **Player Health Stole Multiplier:** Multiplier value that is multiplied with given damage to calculate the additional health that will be added to the player. If player has health stole multiplier more then zero, each time player attacks and applies damage to the enemy player, the damage will be multiplied with the health stole multiplier and resulting value will be added to the player health.
   - **Formula: [Player Champion’s Health Stole Multiplier] + [Extra Health Stole Multiplier Given by Items] + [Extra Health Stole Multiplier Given by Runes]**
-- Player Health: Player’s current health in the game. If greater than total health, this value will be set to total health.
-Player Total Mana: Player’s total mana in the game. 
-Formula: [Player Champion’s Total Mana] + [Extra Total Mana Given by Items] + [Extra Total Mana Given by Runes]
-Player Mana Regeneration Speed: Player’s mana regeneration speed in each second of the game.
-Formula: [Player Champion’s Mana Regeneration Speed] + [Extra Mana Regeneration Speed Given by Items] + [Extra Mana Regeneration Speed Given by Runes]
-Player Mana: Player’s current mana in the game. If greater than total mana, this value will be set to total mana.
-Player Attack Cooldown Time: Player’s attack cooldown time which makes the player wait for the value of time to make another normal attack.
-Formula: [Player Champion’s Attack Cooldown Time] - [Player Champion’s Attack Cooldown Time] * [(Extra Attack Speed Given by Items + Extra Attack Speed Given by Runes) / 100]
-Player AD Attack Damage: Player’s attack damage applied to the enemy player. 
-Formula: [Player Champion’s AD Attack Damage] + [Player Champion’s AD Attack Damage] * [(Sum of Extra Attack Damage Given by AD Items + Sum of Extra Attack Damage Given by AD Runes) / 100]
-Player AP Attack Damage: Player’s attack damage applied to the enemy player. 
-Formula: [Player Champion’s AP Attack Damage] + [Player Champion’s AP Attack Damage] * [(Sum of Extra Attack Damage Given by AP Items + Sum of Extra Attack Damage Given by AP Runes) / 100]
-Player AD Armor: Player’s armor reduced from incoming damage.
-Formula: [Player Champion’s AD Armor] + [Sum of Extra AD Armor Given by Items] + [Sum of Extra AD Armor Given by Runes]
-Player AP Armor: Player’s armor reduced from incoming damage.
-Formula: [Player Champion’s AP Armor] + [Sum of Extra AP Armor Given by Items] + [Sum of Extra AP Armor Given by Runes]
-Player AD Armor Piercing: Player’s armor piercing applied to reduce armor value of the targeted enemy player.
-Formula: [Player Champion’s AD Armor Piercing] + [Player Champion’s AD Armor Piercing] * [(Extra Armor Piercing Given by AD Items + Extra Armor Piercing Given by AD Runes) / 100]
-Player AP Armor Piercing: Player’s armor piercing applied to reduce armor value of the targeted enemy player.
-Formula: [Player Champion’s AP Armor Piercing] + [Player Champion’s AP Armor Piercing] * [(Extra Armor Piercing Given by AP Items + Extra Armor Piercing Given by AP Runes) / 100]
-Player Movement Speed: Player’s movement speed applied while moving.
-Formula: [Player Champion’s Movement Speed] + [Player Champion’s Movement Speed] * [(Extra Movement Speed Given by Items + Extra Movement Speed Given by Runes) / 100]
+- **Player Health:** Player’s current health in the game. If greater than total health, this value will be set to total health.
+- **Player Total Mana:** Player’s total mana in the game. 
+  - **Formula: [Player Champion’s Total Mana] + [Extra Total Mana Given by Items] + [Extra Total Mana Given by Runes]**
+- **Player Mana Regeneration Speed:** Player’s mana regeneration speed in each second of the game.
+  - **Formula: [Player Champion’s Mana Regeneration Speed] + [Extra Mana Regeneration Speed Given by Items] + [Extra Mana Regeneration Speed Given by Runes]**
+- **Player Mana:** Player’s current mana in the game. If greater than total mana, this value will be set to total mana.
+- **Player Attack Cooldown Time:** Player’s attack cooldown time which makes the player wait for the value of time to make another normal attack.
+  - **Formula: [Player Champion’s Attack Cooldown Time] - [Player Champion’s Attack Cooldown Time] * [(Extra Attack Speed Given by Items + Extra Attack Speed Given by Runes) / 100]**
+- **Player AD Attack Damage:** Player’s attack damage applied to the enemy player. 
+  - **Formula: [Player Champion’s AD Attack Damage] + [Player Champion’s AD Attack Damage] * [(Sum of Extra Attack Damage Given by AD Items + Sum of Extra Attack Damage Given by AD Runes) / 100]**
+- **Player AP Attack Damage:** Player’s attack damage applied to the enemy player. 
+  - **Formula: [Player Champion’s AP Attack Damage] + [Player Champion’s AP Attack Damage] * [(Sum of Extra Attack Damage Given by AP Items + Sum of Extra Attack Damage Given by AP Runes) / 100]**
+- **Player AD Armor:** Player’s armor reduced from incoming damage.
+  - **Formula: [Player Champion’s AD Armor] + [Sum of Extra AD Armor Given by Items] + [Sum of Extra AD Armor Given by Runes]**
+- **Player AP Armor:** Player’s armor reduced from incoming damage.
+  - **Formula: [Player Champion’s AP Armor] + [Sum of Extra AP Armor Given by Items] + [Sum of Extra AP Armor Given by Runes]**
+- **Player AD Armor Piercing:** Player’s armor piercing applied to reduce armor value of the targeted enemy player.
+  - **Formula: [Player Champion’s AD Armor Piercing] + [Player Champion’s AD Armor Piercing] * [(Extra Armor Piercing Given by AD Items + Extra Armor Piercing Given by AD Runes) / 100]**
+- **Player AP Armor Piercing:** Player’s armor piercing applied to reduce armor value of the targeted enemy player.
+  - **Formula: [Player Champion’s AP Armor Piercing] + [Player Champion’s AP Armor Piercing] * [(Extra Armor Piercing Given by AP Items + Extra Armor Piercing Given by AP Runes) / 100]**
+- **Player Movement Speed:** Player’s movement speed applied while moving.
+  - **Formula: [Player Champion’s Movement Speed] + [Player Champion’s Movement Speed] * [(Extra Movement Speed Given by Items + Extra Movement Speed Given by Runes) / 100]**
 
 Player Attack - Monobehaviour Class
 Name: PlayerAttack.cs
