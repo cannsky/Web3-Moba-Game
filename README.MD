@@ -18,6 +18,14 @@ Here is the full project explanation in both game, blockchain and server side.
 - Game: Unity Engine
 - Server: Unity Netcode
 
+### Player - NetworkBehaviour Class
+
+**Name: Player.cs**
+
+**Description:** Player (with NetworkObject) is the instantiated script when a player connects to a server. 
+- Network variables of the Player is stored inside Player Data.
+- Components handle the job while Player calls them in Unity specific functions (Awake, Start, Update etc.)
+
 ### Player Input - MonoBehaviour Class
 
 **Name: PlayerInput.cs**
