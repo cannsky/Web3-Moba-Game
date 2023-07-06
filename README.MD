@@ -6,6 +6,12 @@ This project is an open-source project in code base and easy to implement to any
 
 Here is the full project explanation in both game, blockchain and server side.
 
+### Current Stage of the Project
+
+- Web3 side is being developed along with an Unity SDK.
+- Game side is still being developed, core mechanics are ready to go.
+- Server side will be implemented soon.
+
 ### Player Input - MonoBehaviour Class
 
 **Name: PlayerInput.cs**
