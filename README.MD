@@ -136,7 +136,6 @@ Here is the full project explanation in both game, blockchain and server side.
 - **Type (Type: Enum[Melee, Ranged]):** There are two types of player characters: Ranged or Melee. Melee characters’ range can be less than or equal to 1f and ranged characters can be higher than that. (1 float = 1 meters)
 - **Damage Type (Type: Enum[AD, AP]):** Characters normal attack damage type that is used inside of the game in calculations.
 - **Range (Type: Float):** The distance that a player can attack to another player.
-- **Character Prefab (Type: Gameobject):** Prefab that will be instantiated at the start of the battle scene.
 - **Attack Cooldown Time: (Type: Float)**
 - **AD Attack Damage: (Type: Float)**
 - **AP Attack Damage: (Type: Float)**
@@ -204,9 +203,6 @@ Here is the full project explanation in both game, blockchain and server side.
 **Description:** This class represents skills that the players can use, each champion will have a skill set on them.
 - **ID: (Type: int)**
 - **Skill Type: (Type: Enum[AD, AP])**
-- **Animation: (Type: Animation)**
-- **VFX: (Type: Gameobject)**
-- **Sound: (Type: AudioClip)**
 - **Radius: (Type: Float)**
 - **Range: (Type: Float)**
 - **Attack Damage: (Type: Float)**
