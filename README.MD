@@ -221,7 +221,7 @@ Here is the full project explanation in both game, blockchain and server side.
 **Description:** Player Skill is responsible for the skills of the player. Checks several requirements and if they are met player attacks to the enemy team’s any player.
 Variables Important: **target**.
 - If the player uses keys **[q, w, e or r],** the player will perform a skill in the direction of the right click button. Skill set for each champion is given as qSkill, wSkill, eSkill, rSkill in the Champion which is referenced through Player Data.
-- **If there is no cooldown on skill,** the player performs the skill.
+- **If there is no cooldown on skill,** the player performs the skill
   - **If there is enough mana,** the player performs the skill.
     - **If there is an enemy inside of the skill area,** the enemy inside of the area will take damage using Player Skill’s apply damage instead of Player Attack’s apply damage.
   - **If there is not enough mana,** do nothing.
