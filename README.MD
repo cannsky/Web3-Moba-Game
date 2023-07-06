@@ -221,3 +221,5 @@ Variables Important: **target**.
 - Attacks and skills of champions have a vfx component added to them. This vfx component is being instantiated in PlayerVFX.
 - Virtual effect’s display position is the same position as the Player Skill’s calculated position. That’s why, Player Skill calls Player VFX with a position given.
 
+__**Note:** Player VFX uses slashes instead of trails. This is done for modularity and variation.__
+
