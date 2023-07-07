@@ -12,6 +12,10 @@ Here is the full project explanation in both game, blockchain and server side.
 - Game side is still being developed, core mechanics are ready to go.
 - Server side will be implemented soon.
 
+### Versions
+
+- v1: Web2 server side implementation (In Progress...)
+
 ### Used Technologies
 
 - Web3:
