@@ -1,31 +1,26 @@
 using UnityEngine;
 
-public class PlayerInput : MonoBehaviour
+[System.Serializable]
+public class PlayerInput
 {
-    public bool LeftClick { get; private set; }
-    public bool RightClick { get; private set; }
-    public bool Q { get; private set; }
-    public bool W { get; private set; }
-    public bool E { get; private set; }
-    public bool R { get; private set; }
+    private Player player;
 
-    void Update()
+    public Vector2 cameraInput;
+    public bool LeftClick, RightClick, Q, W, E, R, Space;
+
+    public PlayerInputActions playerInputActions;
+
+    public PlayerInput(Player player) => this.player = player;
+
+    public void OnStart()
     {
-        LeftClick = Input.GetMouseButtonDown(0);
-        RightClick = Input.GetMouseButtonDown(1);
-        Q = Input.GetKeyDown(KeyCode.Q);
-        W = Input.GetKeyDown(KeyCode.W);
-        E = Input.GetKeyDown(KeyCode.E);
-        R = Input.GetKeyDown(KeyCode.R);
+        playerInputActions = new PlayerInputActions();
+        playerInputActions.Movement.LeftClick.performed += i => LeftClick = true;
+        playerInputActions.Movement.RightClick.performed += i => RightClick = true;
+        playerInputActions.Camera.CameraReset.performed += i => Space = true;
+        playerInputActions.Camera.CameraMovement.performed += i => cameraInput = i.ReadValue<Vector2>();
+        playerInputActions.Enable();
     }
 
-    void LateUpdate()
-    {
-        LeftClick = false;
-        RightClick = false;
-        Q = false;
-        W = false;
-        E = false;
-        R = false;
-    }
+    public void OnLateUpdate() => LeftClick = RightClick = Q = W = E = R = Space = false;
 }

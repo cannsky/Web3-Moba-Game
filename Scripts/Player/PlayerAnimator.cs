@@ -1,28 +1,16 @@
 using UnityEngine;
 
-public class PlayerAnimator : MonoBehaviour
+[System.Serializable]
+public class PlayerAnimator
 {
+    private Player player;
     private Animator animator;
-    public Champion champion;
 
-    void Start()
-    {
-        animator = GetComponent<Animator>();
-        animator.runtimeAnimatorController = champion.animatorController;
-    }
+    public PlayerAnimator(Player player) => this.player = player;
 
-    public void Run()
-    {
-        animator.SetTrigger("Run");
-    }
+    public void OnStart() => animator = player.transform.GetChild(0).GetComponent<Animator>();
 
-    public void Idle()
-    {
-        animator.ResetTrigger("Run");
-    }
+    public void PlayRunAnimation(bool isRunning) => animator.SetBool("Run", isRunning);
 
-    public void Attack()
-    {
-        animator.SetTrigger("Attack");
-    }
+    public void PlayAttackAnimation(string animationName) => animator.Play(animationName);
 }
