@@ -8,4 +8,6 @@ If you want to get web3 implementation, please wait v2 version of the project.
 
 You might be wondering where is the server (or validators on web3) files on that project. Well actually inside of the project with client codes. Let's give a brief explanation on that:
 
-Both client and server use the same code base, which is called as Unity's headless server technology (or you can say Netcode), where it is also a game without graphic calculations included. Basically when a player enters to a game, an another game with the same logic welcomes them and makes calculations with the same logic in the game.
+Right now both client and server use the same code base, which is called as Unity's headless server technology (or you can say Netcode), where it is also a game without graphic calculations included. Basically when a player enters to a game, an another game with the same logic welcomes them and makes calculations with the same logic in the game.
+
+If you are wondering much about Netcode, you can take a look to the docs.
