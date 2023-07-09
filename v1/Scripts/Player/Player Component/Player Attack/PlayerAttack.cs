@@ -73,15 +73,8 @@ public class PlayerAttack
             isPlayerAttacking = true,
         });
 
-        Debug.Log("damage applied: " + player.playerData.Value.playerADAttackDamage);
-
-        ServerManager.Instance.players[player.playerData.Value.playerAttackData.playerTargetID].playerData.Value = 
-            ServerManager.Instance.players[player.playerData.Value.playerAttackData.playerTargetID].playerData.Value.GeneratePlayerData(
-                "applyDamage", 
-                player.playerData.Value.playerADAttackDamage
-            );
-
-        Debug.Log("Server Applied the Damage!");
+        Player targetPlayer = ServerManager.Instance.players[player.playerData.Value.playerAttackData.playerTargetID];
+        targetPlayer.playerData.Value = targetPlayer.playerData.Value.GeneratePlayerData("applyDamage", player.playerData.Value.playerADAttackDamage);
     }
 
     private bool ClientCheckIsPlayerTargeted() => Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, LayerMask.GetMask("Player"));
