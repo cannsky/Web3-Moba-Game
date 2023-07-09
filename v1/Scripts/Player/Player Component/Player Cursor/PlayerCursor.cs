@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerCursor
 {
     private Player player;
-    private RaycastHit hit;
+    private RaycastHit hit, hitDefault;
     private GameObject playerCursorVFX;
     private string terrainLayerName;
 
@@ -28,7 +28,7 @@ public class PlayerCursor
     public void CallVFX()
     {
         isRightClickCalled = true;
-        player.playerVFX.PlayVFX(playerCursorVFX, hit.point, playerCursorVFX.transform.rotation, 0.5f);
+        player.playerVFX.PlayVFX(playerCursorVFX, new Vector3(hit.point.x, hit.point.y + 0.5f, hit.point.z), playerCursorVFX.transform.rotation, 0.5f);
     }
 
     public void OnLateUpdate() => isRightClickCalled = player.playerInput.RightClick ? true : false;

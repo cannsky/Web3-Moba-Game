@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerSettings
 {
     [Header("Player General")]
+    public string defaultLayerName = "Default";
     public string terrainLayerName = "Terrain";
     [Header("Player Camera")]
     public Vector3 playerCameraOffset = new Vector3(0, 7, -7);
