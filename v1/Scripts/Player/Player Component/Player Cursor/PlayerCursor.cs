@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerCursor
 {
     private Player player;
-    private RaycastHit hit, hitDefault;
+    private RaycastHit hit;
     private GameObject playerCursorVFX;
     private string terrainLayerName;
 
