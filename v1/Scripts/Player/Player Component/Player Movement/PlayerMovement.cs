@@ -48,17 +48,15 @@ public class PlayerMovement
         if (!player.playerData.Value.isMoveRequested && player.playerData.Value.isMoving && agent.remainingDistance < 0.1f) StopMovement();
         if (!player.playerData.Value.isMoveRequested) return;
         agent.SetDestination(new Vector3(player.playerData.Value.playerMovementDestination.x, 0, player.playerData.Value.playerMovementDestination.y));
-        Vector3 direction = new Vector3(player.playerData.Value.playerMovementDestination.x, 0, player.playerData.Value.playerMovementDestination.y) - player.transform.position;
-        direction.y = 0f;
-        targetRotation = Quaternion.LookRotation(direction);
         player.playerData.Value = player.playerData.Value.GeneratePlayerData("isMoveRequested", false);
         player.playerData.Value = player.playerData.Value.GeneratePlayerData(PlayerData.PlayerAnimationState.Run);
     }
 
     private void SmoothRotate()
     {
-        if (Quaternion.Angle(player.transform.rotation, targetRotation) > 0.1f)
-            player.transform.rotation = Quaternion.Slerp(player.transform.rotation, targetRotation, playerRotationSpeed * Time.deltaTime);
+        Vector3 direction = agent.velocity.normalized;
+        direction.y = 0f;
+        if(direction != Vector3.zero) player.transform.rotation = Quaternion.Slerp(player.transform.rotation, Quaternion.LookRotation(direction), playerRotationSpeed * Time.deltaTime);
     }
 
     private void ClientVisuals()
