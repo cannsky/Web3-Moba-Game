@@ -9,7 +9,7 @@ public class ServerManager : NetworkBehaviour
     public static ServerManager Instance;
 
     private NetworkVariable<int> playerCount = new NetworkVariable<int>();
-    private Player[] players = new Player[10];
+    public Player[] players = new Player[10];
 
     private List<ServerCallback> callbacks = new List<ServerCallback>() { new ServerOnClientConnectedCallback(), new ServerOnClientDisconnectCallback() };
 

@@ -5,8 +5,13 @@ using UnityEngine;
 
 public class TestScript : MonoBehaviour
 {
-    private void Start()
+    public void StartHost()
     {
         NetworkManager.Singleton.StartHost();
+    }
+
+    public void StartClient()
+    {
+        NetworkManager.Singleton.StartClient();
     }
 }

@@ -7,5 +7,5 @@ public class ServerCallback
 {
     public virtual void InitializeCallback() => throw new NotImplementedException();
 
-    public virtual void Callback() => throw new NotImplementedException();
+    public virtual void Callback(int id) => throw new NotImplementedException();
 }
