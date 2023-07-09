@@ -20,7 +20,11 @@ public class PlayerMovement
         terrainLayerName = player.playerSettings.terrainLayerName;
     }
 
-    public void OnStart() => agent = player.GetComponent<NavMeshAgent>();
+    public void OnStart()
+    {
+        if(player.IsServer) player.transform.position = new Vector3(10, 8, 8);
+        agent = player.GetComponent<NavMeshAgent>();
+    }
 
     public void OnUpdate()
     {
