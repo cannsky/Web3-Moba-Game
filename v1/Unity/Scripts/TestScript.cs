@@ -7,12 +7,14 @@ public class TestScript : MonoBehaviour
 {
     public void Start()
     {
-        /*NetworkManager.Singleton.StartServer();
+        /*
+        NetworkManager.Singleton.StartServer();
         Debug.Log("server started!");
         NetworkManager.Singleton.OnClientConnectedCallback += (id) =>
         {
             Debug.Log(id + " player entered!!!");
-        };*/
+        };
+        */
     }
     
     public void StartServer()
