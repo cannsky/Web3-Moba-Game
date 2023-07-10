@@ -48,6 +48,12 @@ public class PlayerMovement
         SmoothRotate();
         if (!player.playerData.Value.isMoveRequested && player.playerData.Value.isMoving && agent.remainingDistance < 0.1f) StopMovement();
         if (!player.playerData.Value.isMoveRequested) return;
+        player.playerData.Value = player.playerData.Value = player.playerData.Value.GeneratePlayerData(new PlayerAttackData()
+        {
+            playerTargetID = 0,
+            playerLastAttackTime = player.playerData.Value.playerAttackData.playerLastAttackTime,
+            isPlayerAttacking = false,
+        }, isClientRequest: false);
         agent.SetDestination(new Vector3(player.playerData.Value.playerMovementDestination.x, 0, player.playerData.Value.playerMovementDestination.y));
         player.playerData.Value = player.playerData.Value.GeneratePlayerData("isMoveRequested", false);
         player.playerData.Value = player.playerData.Value.GeneratePlayerData(PlayerData.PlayerAnimationState.Run);
