@@ -66,6 +66,7 @@ public class Player : NetworkBehaviour
     //SERVER RPC'S DON'T CHECK ANYTHING!
     //THIS IS TOTALLY UNSAFE!
 
+    [ClientRpc] public void PlayerAttackAnimationOrderClientRpc() => playerAnimator.PlayAttackAnimation("Normal Attack");
     [ServerRpc] public void PlayerMovementRequestServerRpc(Vector2 playerMovementDestination, float playerMovementTime) => playerData.Value = playerData.Value.GeneratePlayerData(playerMovementDestination, playerMovementTime);
     [ServerRpc] public void PlayerAnimationStateRequestServerRpc(PlayerData.PlayerAnimationState playerAnimationState) => playerData.Value = playerData.Value.GeneratePlayerData(playerAnimationState);
     [ServerRpc] public void PlayerAttackRequestServerRpc(int playerTargetID) => playerData.Value = playerData.Value.GeneratePlayerData(new PlayerAttackData { playerTargetID = playerTargetID }, isClientRequest: true);
