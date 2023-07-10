@@ -11,7 +11,7 @@ public class ServerManagerStarter
 
     public static void Start()
     {
-        if (ServerManagerArguments.isServerStart) return;
+        if (!ServerManagerArguments.isServerStart) return;
         SceneManager.LoadScene(ServerManagerArguments.sceneName);
         unityTransport = NetworkManager.Singleton.gameObject.GetComponent<UnityTransport>();
         unityTransport.ConnectionData.Port = (ushort) ServerManagerArguments.serverPort;
