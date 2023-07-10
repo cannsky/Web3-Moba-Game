@@ -60,21 +60,21 @@ public class PlayerAttack
     
     public void ServerTryAttack()
     {
-        //THIS IS A QUICK FIX, ADAPT IT LATER!
-        //CHECK PLAYER IS IN GAME OR NOT.
         if (!ServerCheckIsPlayerAttacking()) return;
+        if (!ServerCheckPlayerAttackCooldown()) return;
+        if (!ServerCheckPlayerRange()) return;
 
-        if (!ServerCheckPlayerAttackCooldown() || !ServerCheckPlayerRange()) return;
-        
         player.playerData.Value = player.playerData.Value.GeneratePlayerData(new PlayerAttackData()
         {
             playerTargetID = player.playerData.Value.playerAttackData.playerTargetID,
             playerLastAttackTime = Time.time,
             isPlayerAttacking = true,
-        });
+        }, isClientRequest: false);
 
         Player targetPlayer = ServerManager.Instance.players[player.playerData.Value.playerAttackData.playerTargetID];
         targetPlayer.playerData.Value = targetPlayer.playerData.Value.GeneratePlayerData("applyDamage", player.playerData.Value.playerADAttackDamage);
+
+        player.PlayerAttackAnimationOrderClientRpc();
     }
 
     private bool ClientCheckIsPlayerTargeted() => Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, LayerMask.GetMask("Player"));
