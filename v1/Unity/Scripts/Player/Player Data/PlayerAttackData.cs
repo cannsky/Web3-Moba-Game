@@ -1,22 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Netcode;
-using UnityEngine;
-using static PlayerData;
-using static UnityEditor.Progress;
 
 public struct PlayerAttackData : INetworkSerializable
 {
-    public bool isSet;
     public int playerTargetID;
     public float playerLastAttackTime;
     public bool isPlayerAttacking;
 
     public PlayerAttackData(bool isSet)
     {
-        this.isSet = isSet;
         playerTargetID = 0;
-        playerLastAttackTime = 0f;
+        playerLastAttackTime = 0;
         isPlayerAttacking = false;
     }
 
@@ -41,14 +34,14 @@ public struct PlayerAttackData : INetworkSerializable
         isPlayerAttacking = isPlayerAttacking
     };
 
-    public PlayerAttackData GeneratePlayerAttackData(float playerLastAttackTime = 0f, bool isPlayerAttacking = false) => new PlayerAttackData()
+    public PlayerAttackData GeneratePlayerAttackData(float playerLastAttackTime = 0, bool isPlayerAttacking = false) => new PlayerAttackData()
     {
         playerTargetID = playerTargetID,
         playerLastAttackTime = playerLastAttackTime,
         isPlayerAttacking = isPlayerAttacking
     };
 
-    public PlayerAttackData GeneratePlayerAttackData(int playerTargetID = 0, float playerLastAttackTime = 0f, bool isPlayerAttacking = false) => new PlayerAttackData()
+    public PlayerAttackData GeneratePlayerAttackData(int playerTargetID = 0, float playerLastAttackTime = 0, bool isPlayerAttacking = false) => new PlayerAttackData()
     {
         playerTargetID = playerTargetID,
         playerLastAttackTime = playerLastAttackTime,

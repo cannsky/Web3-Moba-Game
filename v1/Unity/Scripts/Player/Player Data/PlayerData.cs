@@ -24,8 +24,6 @@ public struct PlayerData : INetworkSerializable
     public PlayerChampionData playerChampionData;
     public PlayerItemData[] items;
     public PlayerRuneData[] runes;
-    public Vector2 playerMovementDestination;
-    public float playerMovementTime;
     public float playerTotalHealth;
     public float playerHealthRegenerationSpeed;
     public float playerHealthStoleMultiplier;
@@ -41,14 +39,12 @@ public struct PlayerData : INetworkSerializable
     public float playerADArmorPiercing;
     public float playerAPArmorPiercing;
     public float playerMovementSpeed;
-    public bool isSet, isMoveRequested, isMoving;
+    public bool isSet;
 
     public PlayerData(int ID, PlayerChampionData networkChampion, PlayerTeam team)
     {
         playerID = ID;
-        isSet = isMoveRequested = isMoving = false;
-        playerMovementDestination = Vector2.zero;
-        playerMovementTime = 0f;
+        isSet = true;
         playerTeam = team;
         playerAnimationState = PlayerAnimationState.Idle;
         playerChampionData = networkChampion;
@@ -67,11 +63,7 @@ public struct PlayerData : INetworkSerializable
     {
         serializer.SerializeValue(ref playerID);
         serializer.SerializeValue(ref isSet);
-        serializer.SerializeValue(ref isMoveRequested);
-        serializer.SerializeValue(ref isMoving);
         serializer.SerializeValue(ref playerAnimationState);
-        serializer.SerializeValue(ref playerMovementDestination);
-        serializer.SerializeValue(ref playerMovementTime);
         serializer.SerializeValue(ref playerTeam);
         serializer.SerializeValue(ref playerTotalHealth);
         serializer.SerializeValue(ref playerHealthRegenerationSpeed);
@@ -131,10 +123,6 @@ public struct PlayerData : INetworkSerializable
     {
         playerID = playerID,
         isSet = isSet,
-        isMoveRequested = playerDataType == PlayerDataType.Movement ? newPlayerData.isMoveRequested : isMoveRequested,
-        isMoving = playerDataType == PlayerDataType.Movement ? newPlayerData.isMoving : isMoving,
-        playerMovementDestination = playerDataType == PlayerDataType.Movement ? newPlayerData.playerMovementDestination : playerMovementDestination,
-        playerMovementTime = playerDataType == PlayerDataType.Movement ? newPlayerData.playerMovementTime : playerMovementTime,
         playerTeam = playerTeam,
         playerAnimationState = playerDataType == PlayerDataType.Animation ? newPlayerData.playerAnimationState : playerAnimationState,
         playerChampionData = playerChampionData,
@@ -157,14 +145,9 @@ public struct PlayerData : INetworkSerializable
         playerMovementSpeed = playerMovementSpeed,
     };
 
-    public PlayerData GeneratePlayerData(string boolName, bool newValue) => new PlayerData()
+    public PlayerData GeneratePlayerData() => new PlayerData()
     {
         playerID = playerID,
-        isSet = boolName == "isSet" ? newValue : isSet,
-        isMoveRequested = boolName == "isMoveRequested" ? newValue : isMoveRequested,
-        isMoving = boolName == "isMoving" ? newValue : isMoving,
-        playerMovementDestination = playerMovementDestination,
-        playerMovementTime = playerMovementTime,
         playerTeam = playerTeam,
         playerAnimationState = playerAnimationState,
         playerChampionData = playerChampionData,
@@ -191,10 +174,6 @@ public struct PlayerData : INetworkSerializable
     {
         playerID = playerID,
         isSet = isSet,
-        isMoveRequested = isMoveRequested,
-        isMoving = isMoving,
-        playerMovementDestination = playerMovementDestination,
-        playerMovementTime = playerMovementTime,
         playerTeam = playerTeam,
         playerAnimationState = playerAnimationState,
         playerChampionData = playerChampionData,
@@ -221,10 +200,6 @@ public struct PlayerData : INetworkSerializable
     {
         playerID = playerID,
         isSet = isSet,
-        isMoveRequested = isMoveRequested,
-        isMoving = isMoving,
-        playerMovementDestination = playerMovementDestination,
-        playerMovementTime = playerMovementTime,
         playerTeam = playerTeam,
         playerAnimationState = playerAnimationState,
         playerChampionData = playerChampionData,
