@@ -26,7 +26,7 @@ public class PlayerUI
     public void UpdatePlayerUI()
     {
         playerNameText.text = player.playerData.Value.playerID.ToString();
-        playerHealthText.text = player.playerData.Value.playerHealth.ToString() + " / " + player.playerData.Value.playerTotalHealth.ToString();
+        playerHealthText.text = player.playerData.Value.playerHealthData.playerHealth.ToString() + " / " + player.playerData.Value.playerHealthData.playerTotalHealth.ToString();
     }
 
     private void SyncronizeTextWithCamera(Transform transform) => transform.LookAt(transform.position + Camera.main.transform.rotation * Vector3.forward, Camera.main.transform.rotation * Vector3.up);

@@ -4,13 +4,12 @@ using Unity.Netcode;
 using UnityEngine;
 
 [System.Serializable]
-public struct PlayerChampionData : INetworkSerializable
+public class PlayerChampionData : INetworkSerializable
 {
     public enum ChampionType { Melee, Ranged }
     public enum DamageType { AD, AP }
 
     public int ID;
-    //public NetworkSkill[] skills;
     public ChampionType championType;
     public DamageType damageType;
     public float range;
@@ -28,9 +27,31 @@ public struct PlayerChampionData : INetworkSerializable
     public float apArmorPiercing;
     public float movementSpeed;
 
+    public PlayerChampionData() { }
+
+    public PlayerChampionData(Champion networkChampion)
+    {
+        ID = networkChampion.ID;
+        championType = (ChampionType) networkChampion.championType;
+        damageType = (DamageType) networkChampion.damageType;
+        range = networkChampion.range;
+        attackCooldownTime = networkChampion.attackCooldownTime;
+        adAttackDamage = networkChampion.adAttackDamage;
+        apAttackDamage = networkChampion.apAttackDamage;
+        totalHealth = networkChampion.totalHealth;
+        healthRegenerationSpeed = networkChampion.healthRegenerationSpeed;
+        healthStoleMultiplier = networkChampion.healthStoleMultiplier;
+        totalMana = networkChampion.totalMana;
+        manaRegenerationSpeed = networkChampion.manaRegenerationSpeed;
+        adArmor = networkChampion.adArmor;
+        apArmor = networkChampion.apArmor;
+        adArmorPiercing = networkChampion.adArmorPiercing;
+        apArmorPiercing = networkChampion.apArmorPiercing;
+        movementSpeed = networkChampion.movementSpeed;
+    }
+
     public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
     {
-        //skills = new NetworkSkill[4];
         serializer.SerializeValue(ref ID);
         serializer.SerializeValue(ref championType);
         serializer.SerializeValue(ref damageType);
@@ -48,6 +69,5 @@ public struct PlayerChampionData : INetworkSerializable
         serializer.SerializeValue(ref adArmorPiercing);
         serializer.SerializeValue(ref apArmorPiercing);
         serializer.SerializeValue(ref movementSpeed);
-        //foreach (var skill in skills) skill.NetworkSerialize(serializer);
     }
 }

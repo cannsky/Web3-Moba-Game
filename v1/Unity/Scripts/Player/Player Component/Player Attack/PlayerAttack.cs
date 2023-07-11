@@ -64,18 +64,19 @@ public class PlayerAttack
         if (!ServerCheckPlayerAttackCooldown()) return;
         if (!ServerCheckPlayerRange()) return;
 
-        player.playerAttackData.Value = player.playerAttackData.Value.GeneratePlayerAttackData(playerLastAttackTime: Time.time, isPlayerAttacking: true);
+        player.playerData.Value.playerAttackData.GeneratePlayerAttackData(playerLastAttackTime: Time.time, isPlayerAttacking: true);
 
-        Player targetPlayer = ServerManager.Instance.players[player.playerAttackData.Value.playerTargetID];
-        targetPlayer.playerData.Value = targetPlayer.playerData.Value.GeneratePlayerData("applyDamage", player.playerData.Value.playerADAttackDamage);
+        Player targetPlayer = ServerManager.Instance.players[player.playerData.Value.playerAttackData.playerTargetID];
+
+        targetPlayer.playerEvent.ApplyDamage(player.playerData.Value.playerChampionData.adAttackDamage, player.playerData.Value.playerChampionData.apAttackDamage);
 
         player.PlayerAttackAnimationOrderClientRpc();
     }
 
     private bool ClientCheckIsPlayerTargeted() => Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, LayerMask.GetMask("Player"));
-    private bool ClientCheckPlayerAttackCooldown() => Time.time - player.playerAttackData.Value.playerLastAttackTime >= player.playerData.Value.playerAttackCooldownTime;
+    private bool ClientCheckPlayerAttackCooldown() => Time.time - player.playerData.Value.playerAttackData.playerLastAttackTime >= player.playerData.Value.playerDamageData.playerAttackCooldownTime;
     private bool ClientCheckPlayerRange() => targetDistance <= player.playerData.Value.playerChampionData.range;
-    private bool ServerCheckPlayerAttackCooldown() => Time.time - player.playerAttackData.Value.playerLastAttackTime >= player.playerData.Value.playerAttackCooldownTime;
-    private bool ServerCheckPlayerRange() => Vector3.Distance(player.transform.position, ServerManager.Instance.players[player.playerAttackData.Value.playerTargetID].transform.position) <= player.playerData.Value.playerChampionData.range;
-    private bool ServerCheckIsPlayerAttacking() => player.playerAttackData.Value.isPlayerAttacking;
+    private bool ServerCheckPlayerAttackCooldown() => Time.time - player.playerData.Value.playerAttackData.playerLastAttackTime >= player.playerData.Value.playerDamageData.playerAttackCooldownTime;
+    private bool ServerCheckPlayerRange() => Vector3.Distance(player.transform.position, ServerManager.Instance.players[player.playerData.Value.playerAttackData.playerTargetID].transform.position) <= player.playerData.Value.playerChampionData.range;
+    private bool ServerCheckIsPlayerAttacking() => player.playerData.Value.playerAttackData.isPlayerAttacking;
 }

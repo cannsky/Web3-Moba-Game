@@ -6,11 +6,10 @@ using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public struct PlayerData : INetworkSerializable
+public struct PlayerDataOld : INetworkSerializable
 {
     public enum PlayerDataType { Animation, Attack, Movement }
     public enum PlayerTeam { TeamBlue, TeamRed }
-    public enum PlayerAnimationState { Idle, Run, Attack, SkillQ, SkillW, SkillE, SkillR }
     
     /*
      * Please remember that the data being transferred to the player (or client) as well.
@@ -20,14 +19,9 @@ public struct PlayerData : INetworkSerializable
 
     public int playerID;
     public PlayerTeam playerTeam;
-    public PlayerAnimationState playerAnimationState;
     public PlayerChampionData playerChampionData;
     public PlayerItemData[] items;
     public PlayerRuneData[] runes;
-    public float playerTotalHealth;
-    public float playerHealthRegenerationSpeed;
-    public float playerHealthStoleMultiplier;
-    public float playerHealth;
     public float playerTotalMana;
     public float playerManaRegenerationSpeed;
     public float playerMana;
@@ -41,34 +35,26 @@ public struct PlayerData : INetworkSerializable
     public float playerMovementSpeed;
     public bool isSet;
 
-    public PlayerData(int ID, PlayerChampionData networkChampion, PlayerTeam team)
+    public PlayerDataOld(int ID, PlayerChampionData networkChampion, PlayerTeam team)
     {
         playerID = ID;
         isSet = true;
         playerTeam = team;
-        playerAnimationState = PlayerAnimationState.Idle;
         playerChampionData = networkChampion;
         items = new PlayerItemData[5]; for (int i = 0; i < items.Length; i++) items[i] = new PlayerItemData();
         runes = new PlayerRuneData[5]; for (int i = 0; i < runes.Length; i++) runes[i] = new PlayerRuneData();
-        playerTotalHealth = playerHealthRegenerationSpeed = playerHealthStoleMultiplier = playerHealth = 0f;
         playerTotalMana = playerManaRegenerationSpeed = playerMana = 0f;
         playerAttackCooldownTime = playerADAttackDamage = playerAPAttackDamage = 0f;
         playerADArmor = playerAPArmor = playerADArmorPiercing = playerAPArmorPiercing = 0f;
         playerMovementSpeed = 0f;
         isSet = true;
-        playerHealth = 100f;
     }
 
     public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
     {
         serializer.SerializeValue(ref playerID);
         serializer.SerializeValue(ref isSet);
-        serializer.SerializeValue(ref playerAnimationState);
         serializer.SerializeValue(ref playerTeam);
-        serializer.SerializeValue(ref playerTotalHealth);
-        serializer.SerializeValue(ref playerHealthRegenerationSpeed);
-        serializer.SerializeValue(ref playerHealthStoleMultiplier);
-        serializer.SerializeValue(ref playerHealth);
         serializer.SerializeValue(ref playerTotalMana);
         serializer.SerializeValue(ref playerManaRegenerationSpeed);
         serializer.SerializeValue(ref playerMana);
@@ -92,9 +78,6 @@ public struct PlayerData : INetworkSerializable
         foreach (PlayerRuneData rune in runes) rune.NetworkSerialize(serializer);
     }
 
-    private float UpdateTotalHealth() => playerTotalHealth = playerChampionData.totalHealth + SumExtraTotalHealth();
-    private float UpdateHealthRegenerationSpeed() => playerHealthRegenerationSpeed = playerChampionData.healthRegenerationSpeed + (playerChampionData.healthRegenerationSpeed * SumExtraTotalHealthRegenerationSpeed() / 100);
-    private float UpdateHealthStoleMultiplier() => playerHealthStoleMultiplier = playerChampionData.healthStoleMultiplier + SumExtraHealthStoleMultiplier();
     private float UpdateTotalMana() => playerTotalMana = playerChampionData.totalMana + SumExtraTotalMana();
     private float UpdateManaRegenerationSpeed() => playerManaRegenerationSpeed = playerChampionData.manaRegenerationSpeed + (playerChampionData.manaRegenerationSpeed * SumExtraManaRegenerationSpeed() / 100);
     private float UpdateAttackCooldownTime() => playerAttackCooldownTime = playerChampionData.attackCooldownTime - (playerChampionData.attackCooldownTime * SumExtraAttackSpeed() / 100);
@@ -105,9 +88,6 @@ public struct PlayerData : INetworkSerializable
     private float UpdateADArmorPiercing() => playerADArmorPiercing = playerChampionData.adArmorPiercing + (playerChampionData.adArmorPiercing * SumExtraADArmorPiercing() / 100);
     private float UpdateAPArmorPiercing() => playerAPArmorPiercing = playerChampionData.apArmorPiercing + (playerChampionData.apArmorPiercing * SumExtraAPArmorPiercing() / 100);
     private float UpdateMovementSpeed() => playerMovementSpeed = playerChampionData.movementSpeed + (playerChampionData.movementSpeed * SumExtraMovementSpeed() / 100);
-    private float SumExtraTotalHealth() => items.Sum(item => item.extraTotalHealth) + runes.Sum(rune => rune.extraTotalHealth);
-    private float SumExtraTotalHealthRegenerationSpeed() => items.Sum(item => item.extraHealthRegenerationSpeed) + runes.Sum(rune => rune.extraHealthRegenerationSpeed);
-    private float SumExtraHealthStoleMultiplier() => items.Sum(item => item.extraHealthStoleMultiplier) + runes.Sum(rune => rune.extraHealthStoleMultiplier);
     private float SumExtraTotalMana() => items.Sum(item => item.extraTotalMana) + runes.Sum(rune => rune.extraTotalMana);
     private float SumExtraManaRegenerationSpeed() => items.Sum(item => item.extraManaRegenerationSpeed) + runes.Sum(rune => rune.extraManaRegenerationSpeed);
     private float SumExtraAttackSpeed() => items.Sum(item => item.extraAttackSpeed) + runes.Sum(rune => rune.extraAttackSpeed);
@@ -119,19 +99,13 @@ public struct PlayerData : INetworkSerializable
     private float SumExtraAPArmorPiercing() => items.Sum(item => item.extraAPArmorPiercing) + runes.Sum(rune => rune.extraAPArmorPiercing);
     private float SumExtraMovementSpeed() => items.Sum(item => item.extraMovementSpeed) + runes.Sum(rune => rune.extraMovementSpeed);
 
-    public PlayerData GeneratePlayerData(PlayerDataType playerDataType, PlayerData newPlayerData, bool isRequest = false) => new PlayerData()
+    public PlayerDataOld GeneratePlayerData() => new PlayerDataOld()
     {
         playerID = playerID,
-        isSet = isSet,
         playerTeam = playerTeam,
-        playerAnimationState = playerDataType == PlayerDataType.Animation ? newPlayerData.playerAnimationState : playerAnimationState,
         playerChampionData = playerChampionData,
         items = items,
         runes = runes,
-        playerTotalHealth = playerTotalHealth,
-        playerHealthRegenerationSpeed = playerHealthRegenerationSpeed,
-        playerHealthStoleMultiplier = playerHealthStoleMultiplier,
-        playerHealth = playerHealth,
         playerTotalMana = playerTotalMana,
         playerManaRegenerationSpeed = playerManaRegenerationSpeed,
         playerMana = playerMana,
@@ -145,70 +119,14 @@ public struct PlayerData : INetworkSerializable
         playerMovementSpeed = playerMovementSpeed,
     };
 
-    public PlayerData GeneratePlayerData() => new PlayerData()
-    {
-        playerID = playerID,
-        playerTeam = playerTeam,
-        playerAnimationState = playerAnimationState,
-        playerChampionData = playerChampionData,
-        items = items,
-        runes = runes,
-        playerTotalHealth = playerTotalHealth,
-        playerHealthRegenerationSpeed = playerHealthRegenerationSpeed,
-        playerHealthStoleMultiplier = playerHealthStoleMultiplier,
-        playerHealth = playerHealth,
-        playerTotalMana = playerTotalMana,
-        playerManaRegenerationSpeed = playerManaRegenerationSpeed,
-        playerMana = playerMana,
-        playerAttackCooldownTime = playerAttackCooldownTime,
-        playerADAttackDamage = playerADAttackDamage,
-        playerAPAttackDamage = playerAPAttackDamage,
-        playerADArmor = playerADArmor,
-        playerAPArmor = playerAPArmor,
-        playerADArmorPiercing = playerADArmorPiercing,
-        playerAPArmorPiercing = playerAPArmorPiercing,
-        playerMovementSpeed = playerMovementSpeed,
-    };
-
-    public PlayerData GeneratePlayerData(string actionName, float value) => new PlayerData()
+    public PlayerDataOld UpdatePlayerData() => new PlayerDataOld()
     {
         playerID = playerID,
         isSet = isSet,
         playerTeam = playerTeam,
-        playerAnimationState = playerAnimationState,
         playerChampionData = playerChampionData,
         items = items,
         runes = runes,
-        playerTotalHealth = playerTotalHealth,
-        playerHealthRegenerationSpeed = playerHealthRegenerationSpeed,
-        playerHealthStoleMultiplier = playerHealthStoleMultiplier,
-        playerHealth = actionName == "applyDamage" ? playerHealth - value + playerADArmor : playerHealth,
-        playerTotalMana = playerTotalMana,
-        playerManaRegenerationSpeed = playerManaRegenerationSpeed,
-        playerMana = playerMana,
-        playerAttackCooldownTime = playerAttackCooldownTime,
-        playerADAttackDamage = playerADAttackDamage,
-        playerAPAttackDamage = playerAPAttackDamage,
-        playerADArmor = playerADArmor,
-        playerAPArmor = playerAPArmor,
-        playerADArmorPiercing = playerADArmorPiercing,
-        playerAPArmorPiercing = playerAPArmorPiercing,
-        playerMovementSpeed = playerMovementSpeed,
-    };
-
-    public PlayerData UpdatePlayerData() => new PlayerData()
-    {
-        playerID = playerID,
-        isSet = isSet,
-        playerTeam = playerTeam,
-        playerAnimationState = playerAnimationState,
-        playerChampionData = playerChampionData,
-        items = items,
-        runes = runes,
-        playerTotalHealth = UpdateTotalHealth(),
-        playerHealthRegenerationSpeed = UpdateHealthRegenerationSpeed(),
-        playerHealthStoleMultiplier = UpdateHealthStoleMultiplier(),
-        playerHealth = playerHealth,
         playerTotalMana = UpdateTotalMana(),
         playerManaRegenerationSpeed = UpdateManaRegenerationSpeed(),
         playerMana = playerMana,

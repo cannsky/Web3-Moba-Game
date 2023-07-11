@@ -10,14 +10,13 @@ public class Player : NetworkBehaviour
     public PlayerSettings playerSettings;
 
     public NetworkVariable<PlayerData> playerData = new NetworkVariable<PlayerData>();
-    public NetworkVariable<PlayerAttackData> playerAttackData = new NetworkVariable<PlayerAttackData>();
-    public NetworkVariable<PlayerMovementData> playerMovementData = new NetworkVariable<PlayerMovementData>();
 
     public PlayerAnimator playerAnimator;
     public PlayerAttack playerAttack;
     public PlayerCoroutine playerCoroutine;
     public PlayerCamera playerCamera;
     public PlayerCursor playerCursor;
+    public PlayerEvent playerEvent;
     public PlayerInput playerInput;
     public PlayerMovement playerMovement;
     public PlayerUI playerUI;
@@ -53,9 +52,7 @@ public class Player : NetworkBehaviour
 
     public void GeneratePlayerData()
     {
-        playerData.Value = new PlayerData((int)OwnerClientId, PlayerDataGenerator.GeneratePlayerChampionData(1), (OwnerClientId % 2 == 0) ? PlayerData.PlayerTeam.TeamBlue : PlayerData.PlayerTeam.TeamRed).UpdatePlayerData();
-        playerAttackData.Value = new PlayerAttackData(true);
-        playerMovementData.Value = new PlayerMovementData(true);
+        playerData.Value = new PlayerData(PlayerDataGenerator.GeneratePlayerChampionData(1));
     }
     public void DestroyGameObject(GameObject removedGameObject) => Destroy(removedGameObject);
     public void DestroyGameObject(Animator removedGameObject) => Destroy(removedGameObject);
@@ -63,10 +60,7 @@ public class Player : NetworkBehaviour
     public GameObject InstantiateChampionPrefab() => Instantiate(((Champion)PlayerResourceFinder.Find(PlayerResourceFinder.Type.Champion, playerData.Value.playerChampionData.ID)).characterPrefab, transform);
     public void OnValueChanged(PlayerData a, PlayerData b)
     {
-        Debug.Log(a.playerID);
-        Debug.Log("Old Data: " + a.playerHealth + " New Data: " + b.playerHealth);
-        Debug.Log("Old Data: " + a.playerADAttackDamage + " New Data: " + b.playerADAttackDamage);
-        Debug.Log("Old Data: " + a.playerADArmor + " New Data: " + b.playerADArmor);
+        Debug.Log("Old Data: " + a.playerID + " New Data: " + b.playerID);
         playerUI.UpdatePlayerUI();
     }
 
@@ -76,11 +70,11 @@ public class Player : NetworkBehaviour
     [ClientRpc] public void PlayerAttackAnimationOrderClientRpc() => playerAnimator.PlayAttackAnimation("Normal Attack");
     [ServerRpc] public void PlayerMovementRequestServerRpc(Vector2 playerMovementDestination, float playerMovementTime)
     {
-        playerMovementData.Value = playerMovementData.Value.GeneratePlayerMovementData(playerMovementDestination, playerMovementTime, isMoveRequested: true, isMoving: true);
+        playerData.Value.playerMovementData.UpdateData(playerMovementDestination, playerMovementTime, isMoveRequested: true, isMoving: true);
     }
-    [ServerRpc] public void PlayerAnimationStateRequestServerRpc(PlayerData.PlayerAnimationState playerAnimationState) => playerData.Value = playerData.Value.GeneratePlayerData(PlayerData.PlayerDataType.Animation, new PlayerData() { playerAnimationState = playerAnimationState });
+    [ServerRpc] public void PlayerAnimationStateRequestServerRpc(PlayerAnimationData.PlayerAnimationState playerAnimationState) => playerData.Value.playerAnimationData.UpdateData(playerAnimationState);
     [ServerRpc] public void PlayerAttackRequestServerRpc(int playerTargetID)
     {
-        playerAttackData.Value = playerAttackData.Value.GeneratePlayerAttackData(playerTargetID: playerTargetID, isPlayerAttacking: false);
+        playerData.Value.playerAttackData.GeneratePlayerAttackData(playerTargetID: playerTargetID, isPlayerAttacking: false);
     }
 }

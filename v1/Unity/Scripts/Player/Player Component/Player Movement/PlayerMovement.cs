@@ -46,15 +46,16 @@ public class PlayerMovement
     {
         if (!player.IsServer) return;
         SmoothRotate();
-        if (!player.playerMovementData.Value.isMoveRequested && player.playerMovementData.Value.isMoving && agent.remainingDistance < 0.1f) StopMovement();
-        if (!player.playerMovementData.Value.isMoveRequested) return;
+        if (!player.playerData.Value.playerMovementData.isMoveRequested && player.playerData.Value.playerMovementData.isMoving && agent.remainingDistance < 0.1f) StopMovement();
+        if (!player.playerData.Value.playerMovementData.isMoveRequested) return;
 
-        player.playerAttackData.Value = player.playerAttackData.Value.GeneratePlayerAttackData(isPlayerAttacking: false);
+        player.playerData.Value.playerAttackData.GeneratePlayerAttackData(isPlayerAttacking: false);
 
-        agent.SetDestination(new Vector3(player.playerMovementData.Value.playerMovementDestination.x, 0, player.playerMovementData.Value.playerMovementDestination.y));
-        player.playerMovementData.Value = player.playerMovementData.Value.GeneratePlayerMovementData(isMoveRequested: false, isMoving: true);
-        //player.playerData.Value = player.playerData.Value.GeneratePlayerData("isMoveRequested", false);
-        player.playerData.Value = player.playerData.Value.GeneratePlayerData(PlayerData.PlayerDataType.Animation, new PlayerData() { playerAnimationState = PlayerData.PlayerAnimationState.Run });
+        agent.SetDestination(new Vector3(player.playerData.Value.playerMovementData.playerMovementDestination.x, 0, player.playerData.Value.playerMovementData.playerMovementDestination.y));
+        
+        player.playerData.Value.playerMovementData.UpdateData(isMoveRequested: false, isMoving: true);
+
+        player.playerData.Value.playerAnimationData.UpdateData(PlayerAnimationData.PlayerAnimationState.Run);
     }
 
     private void SmoothRotate()
@@ -67,14 +68,14 @@ public class PlayerMovement
     private void ClientVisuals()
     {
         if (!player.IsClient) return;
-        if (player.playerData.Value.playerAnimationState == PlayerData.PlayerAnimationState.Idle) player.playerAnimator.PlayRunAnimation(false);
-        else if (player.playerData.Value.playerAnimationState == PlayerData.PlayerAnimationState.Run) player.playerAnimator.PlayRunAnimation(true);
-        else if (player.playerData.Value.playerAnimationState == PlayerData.PlayerAnimationState.Attack) player.playerAnimator.PlayAttackAnimation("Normal Attack");
+        if (player.playerData.Value.playerAnimationData.playerAnimationState == PlayerAnimationData.PlayerAnimationState.Idle) player.playerAnimator.PlayRunAnimation(false);
+        else if (player.playerData.Value.playerAnimationData.playerAnimationState == PlayerAnimationData.PlayerAnimationState.Run) player.playerAnimator.PlayRunAnimation(true);
+        else if (player.playerData.Value.playerAnimationData.playerAnimationState == PlayerAnimationData.PlayerAnimationState.Attack) player.playerAnimator.PlayAttackAnimation("Normal Attack");
     }
 
     public void StopMovement()
     {
-        player.playerMovementData.Value = player.playerMovementData.Value.GeneratePlayerMovementData(isMoveRequested: false, isMoving: false);
-        player.playerData.Value = player.playerData.Value.GeneratePlayerData(PlayerData.PlayerDataType.Animation, new PlayerData() { playerAnimationState = PlayerData.PlayerAnimationState.Idle });
+        player.playerData.Value.playerMovementData.UpdateData(isMoveRequested: false, isMoving: false);
+        player.playerData.Value.playerAnimationData.UpdateData(PlayerAnimationData.PlayerAnimationState.Idle);
     }
 }

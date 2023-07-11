@@ -32,6 +32,7 @@ public class PlayerAwaitSetupCoroutine
 
     public void ClientSetup()
     {
+        Debug.Log("test");
         GameObject championGameObject = player.InstantiateChampionPrefab();
         championGameObject.transform.localPosition = Vector3.zero;
         player.GetComponent<Animator>().runtimeAnimatorController = championGameObject.GetComponent<Animator>().runtimeAnimatorController;
@@ -50,6 +51,7 @@ public class PlayerAwaitSetupCoroutine
     public void ServerSetup()
     {
         player.playerAttack = new PlayerAttack(player);
+        player.playerEvent = new PlayerEvent(player);
         player.playerMovement = new PlayerMovement(player);
         player.playerMovement.OnStart();
     }
